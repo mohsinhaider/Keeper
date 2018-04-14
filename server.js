@@ -18,6 +18,8 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(upload());
 
+require('./app/routes')(app);
+
 mongoose.connect(db.url);
 
 app.listen(port, () => {
