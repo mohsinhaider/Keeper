@@ -71,46 +71,156 @@ speakButton.onclick = function() {
 
         if (speechResultAdjusted.includes("reset")) {
             location.reload();
-        } else {
-            if (speechResultAdjusted.includes("match")) {
-                let sentenceArray = speechResultAdjusted.split(" ");
-                var afterFilter, afterMatch = false;
-                var columnName;
-                var criteriaString = "";
+        } 
+        else if (speechResultAdjusted.includes("match")) {
+            let sentenceArray = speechResultAdjusted.split(" ");
+            var afterFilter, afterMatch = false;
+            var columnName;
+            var criteriaString = "";
 
-                for (let i = 0; i < sentenceArray.length; i++) {
-                    if (afterFilter) {
-                        columnName = sentenceArray[i];
-                        afterFilter = false;
-                    }
-                    else if (afterMatch) {
-                        if (sentenceArray[i] === 'by') {
-                            continue;
-                        }
-                        criteriaString += sentenceArray[i];
-                        if (i != sentenceArray.length - 1) {
-                            criteriaString += " ";
-                        }
-                    }
-                    else if (sentenceArray[i] === "keeper") {
-                        // pass
-                    }
-                    else if (sentenceArray[i] === "filter") {
-                        afterFilter = true;
+            for (let i = 0; i < sentenceArray.length; i++) {
+                if (afterFilter) {
+                    columnName = sentenceArray[i];
+                    afterFilter = false;
+                }
+                else if (afterMatch) {
+                    if (sentenceArray[i] === 'by') {
                         continue;
                     }
-                    else if (sentenceArray[i] === "match") {
-                        afterMatch = true;
-                        continue;
+                    criteriaString += sentenceArray[i];
+                    if (i != sentenceArray.length - 1) {
+                        criteriaString += " ";
                     }
                 }
-
-                console.log('Column: ' + columnName);
-                console.log('Criteria: ' + criteriaString);
-
-                if (columnName.length > 0 && criteriaString.length > 0) {
-                    keeperMatch(columnName, criteriaString);
+                else if (sentenceArray[i] === "keeper") {
+                    // pass
                 }
+                else if (sentenceArray[i] === "filter") {
+                    afterFilter = true;
+                    continue;
+                }
+                else if (sentenceArray[i] === "match") {
+                    afterMatch = true;
+                    continue;
+                }
+            }
+
+            console.log('Column: ' + columnName);
+            console.log('Criteria: ' + criteriaString);
+
+            if (columnName.length > 0 && criteriaString.length > 0) {
+                keeperMatch(columnName, criteriaString);
+            }
+        }
+        else if (speechResultAdjusted.includes("containing")) {
+            let sentenceArray = speechResultAdjusted.split(" ");
+            var afterFilter, afterContaining = false;
+            var columnName;
+            var criteriaString = "";
+
+            for (let i = 0; i < sentenceArray.length; i++) {
+                if (afterFilter) {
+                    columnName = sentenceArray[i];
+                    afterFilter = false;
+                }
+                else if (afterContaining) {
+                    criteriaString += sentenceArray[i];
+                    if (i != sentenceArray.length - 1) {
+                        criteriaString += " ";
+                    }
+                }
+                else if (sentenceArray[i] === "keeper") {
+                    // pass
+                }
+                else if (sentenceArray[i] === "filter") {
+                    afterFilter = true;
+                    continue;
+                }
+                else if (sentenceArray[i] === "containing") {
+                    afterContaining = true;
+                    continue;
+                }
+            }
+
+            console.log('Column: ' + columnName);
+            console.log('Criteria: ' + criteriaString);
+
+            if (columnName.length > 0 && criteriaString.length > 0) {
+                keeperContaining(columnName, criteriaString);
+            }
+        }
+        else if (speechResultAdjusted.includes("less than")) {
+            let sentenceArray = speechResultAdjusted.split(" ");
+            var afterFilter, afterLessThan = false;
+            var columnName;
+            var criteriaString = "";
+
+            for (let i = 0; i < sentenceArray.length; i++) {
+                if (afterFilter) {
+                    columnName = sentenceArray[i];
+                    afterFilter = false;
+                }
+                else if (afterLessThan) {
+                    criteriaString += sentenceArray[i];
+                    if (i != sentenceArray.length - 1) {
+                        criteriaString += " ";
+                    }
+                }
+                else if (sentenceArray[i] === "keeper") {
+                    // pass
+                }
+                else if (sentenceArray[i] === "filter") {
+                    afterFilter = true;
+                    continue;
+                }
+                else if (sentenceArray[i] === "than" || sentenceArray[i] === "then") {
+                    afterLessThan = true;
+                    continue;
+                }
+            }
+
+            console.log('Column: ' + columnName);
+            console.log('Criteria: ' + criteriaString);
+
+            if (columnName.length > 0 && criteriaString.length > 0) {
+                keeperLessThan(columnName, criteriaString);
+            }
+        }
+        else if (speechResultAdjusted.includes("greater than")) {
+            let sentenceArray = speechResultAdjusted.split(" ");
+            var afterFilter, afterGreaterThan = false;
+            var columnName;
+            var criteriaString = "";
+
+            for (let i = 0; i < sentenceArray.length; i++) {
+                if (afterFilter) {
+                    columnName = sentenceArray[i];
+                    afterFilter = false;
+                }
+                else if (afterGreaterThan) {
+                    criteriaString += sentenceArray[i];
+                    if (i != sentenceArray.length - 1) {
+                        criteriaString += " ";
+                    }
+                }
+                else if (sentenceArray[i] === "keeper") {
+                    // pass
+                }
+                else if (sentenceArray[i] === "filter") {
+                    afterFilter = true;
+                    continue;
+                }
+                else if (sentenceArray[i] === "than" || sentenceArray[i] === "then") {
+                    afterGreaterThan = true;
+                    continue;
+                }
+            }
+
+            console.log('Column: ' + columnName);
+            console.log('Criteria: ' + criteriaString);
+
+            if (columnName.length > 0 && criteriaString.length > 0) {
+                keeperGreaterThan(columnName, criteriaString);
             }
         }
     };
@@ -134,6 +244,95 @@ function keeperMatch(columnName, criteriaString) {
         var td = sheetTableRows[i].getElementsByTagName("td")[tdIndex]; // Fix this (iterate by trs)
         if (td) {
             if (td.innerText.toLowerCase().trim() === criteriaString) {
+                console.log('made it');
+                sheetTableRows[i].style.display = "";
+            } 
+            else {
+                sheetTableRows[i].innerHTML = "";
+            }
+        }       
+    }
+}
+
+function keeperContaining(columnName, criteriaString) {
+    let columnMapping = [];
+    let tdIndex;
+    for (let i = 0; i < sheetTableHeaders.length; i++) {
+        let currentColumnName = sheetTableHeaders[i].innerText.toLowerCase();
+        if (currentColumnName === columnName) {
+            tdIndex = i;
+        }
+        columnMapping.push(currentColumnName);
+    }
+
+    console.log(columnMapping);
+    console.log(tdIndex);
+
+    for (var i = 0; i < sheetTableRows.length; i++) {
+        var td = sheetTableRows[i].getElementsByTagName("td")[tdIndex]; // Fix this (iterate by trs)
+        if (td) {  
+            console.log(td.innerText.toLowerCase().trim().split(" "));
+            if (td.innerText.toLowerCase().trim().split(" ").includes(criteriaString)) {
+                console.log('made it');
+                sheetTableRows[i].style.display = "";
+            }
+            else {
+                sheetTableRows[i].innerHTML = "";
+            }
+        }       
+    }
+}
+
+function keeperLessThan(columnName, criteriaString) {
+    let criteriaFloat = parseFloat(criteriaString);
+
+    let columnMapping = [];
+    let tdIndex;
+    for (let i = 0; i < sheetTableHeaders.length; i++) {
+        let currentColumnName = sheetTableHeaders[i].innerText.toLowerCase();
+        if (currentColumnName === columnName) {
+            tdIndex = i;
+        }
+        columnMapping.push(currentColumnName);
+    }
+
+    console.log(columnMapping);
+    console.log(tdIndex);
+
+    for (var i = 0; i < sheetTableRows.length; i++) {
+        var td = sheetTableRows[i].getElementsByTagName("td")[tdIndex]; // Fix this (iterate by trs)
+        if (td) {
+            if (parseFloat(td.innerText.toLowerCase().trim()) < criteriaFloat) {
+                console.log('made it');
+                sheetTableRows[i].style.display = "";
+            } 
+            else {
+                sheetTableRows[i].innerHTML = "";
+            }
+        }       
+    }
+}
+
+function keeperGreaterThan(columnName, criteriaString) {
+    let criteriaFloat = parseFloat(criteriaString);
+
+    let columnMapping = [];
+    let tdIndex;
+    for (let i = 0; i < sheetTableHeaders.length; i++) {
+        let currentColumnName = sheetTableHeaders[i].innerText.toLowerCase();
+        if (currentColumnName === columnName) {
+            tdIndex = i;
+        }
+        columnMapping.push(currentColumnName);
+    }
+
+    console.log(columnMapping);
+    console.log(tdIndex);
+
+    for (var i = 0; i < sheetTableRows.length; i++) {
+        var td = sheetTableRows[i].getElementsByTagName("td")[tdIndex]; // Fix this (iterate by trs)
+        if (td) {
+            if (parseFloat(td.innerText.toLowerCase().trim()) > criteriaFloat) {
                 console.log('made it');
                 sheetTableRows[i].style.display = "";
             } 
