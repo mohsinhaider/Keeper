@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Keeper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/home.css" />
+</head>
+<body>
+    <nav class="navbar navbar-fixed-top navbar-light navbar-expand-md bg-secondary">
+        <div class="row">
+          <img class="navbar-brand" src="../img/logo.png" width="15%" height="15%" alt="logo" hspace="15">
+          <ul class="nav navbar-nav">
+            <li class="nav-item nav-action">
+                <a href="/home" class="nav-link" style="color: #1d1d1e;"><strong>Home</strong></a>
+            </li>
+            <li class="nav-item nav-action">
+                <a href="/home" class="nav-link" style="color: #1d1d1e;"><strong>SheetSearch</strong></a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+    <img src="../img/large_logo.png" class="align-image">
+    <h2 id="hero-text">The hands-free data analysis and visualization tool.</h2>
+
+    <form method="POST">
+        <input type="file" multiple>
+        <img class="align-image" src="https://png.icons8.com/ios/1600/ms-excel.png" width="90" height="90">
+        <p>Keeper's hungry! Drag/Drop your file here for Keeper to eat it.</p>
+        <div>
+            <div>
+                <label for="title">KeeperSheet Title</label>
+                <input type="text" id="title" name="videotitle" maxlength="44">
+            </div>
+        </div>
+        <br>
+        <button type="submit">Upload</button>
+    </form>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+</body>
+</html>
