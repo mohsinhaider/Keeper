@@ -1,9 +1,20 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
+const ObjectID = require('mongoose').Types.ObjectId;
 
 let Sheet = mongoose.model('Sheet');
 
 module.exports = function (app) {
+    app.get('/sheet/view/:id', (req, res) => {
+        console.log('IN HERE');
+        console.log(req.params.id);
+        Sheet.findById(new ObjectID(req.params.id), function (err, sheet) {
+            if (err) {
+                res.send(err)
+            } res.send(sheet);
+        });
+    });
+
     // Upload a sheet, save it to the database, redirect to its view
     app.post('/sheet/upload', (req, res) => {
         if (req.files) {
@@ -41,7 +52,7 @@ module.exports = function (app) {
                             res.send(err);
                         }
                         else {
-                            res.redirect('/sheet?sheetID=' + sheet.id);
+                            res.redirect('/sheet?sheetID=' + sheet.id + '&file_name=' + sheetTitle);
                         }
                     });
                 });
