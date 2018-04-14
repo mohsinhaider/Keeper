@@ -9,6 +9,10 @@ var SheetSchema = new Schema({
     questions: {
         type: Array,
         required: true
+    },
+    date: {
+        type: Date,
+        required: true
     }
 });
 
