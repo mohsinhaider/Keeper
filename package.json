@@ -4,6 +4,7 @@
   "description": "Keeper is a hands-free data filtering and visualization tool, built for business analysts, data scientists, and other professionals who need Excel to work for them.",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
