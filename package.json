@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mohsinhaider/Keeper/issues"
   },
-  "homepage": "https://github.com/mohsinhaider/Keeper#readme"
+  "homepage": "https://github.com/mohsinhaider/Keeper#readme",
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
 }
