@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Keeper is a hands-free data filtering and visualization tool, built for business analysts, data scientists, and other professionals who need Excel to work for them.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohsinhaider/Keeper.git"
+  },
+  "author": "Mohsin Haider",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohsinhaider/Keeper/issues"
+  },
+  "homepage": "https://github.com/mohsinhaider/Keeper#readme"
+}
