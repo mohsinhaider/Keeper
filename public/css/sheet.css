@@ -1,0 +1,28 @@
+.headline {
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 800px;
+  }
+  
+.table-headline {
+    width: 800px;
+}
+
+#speak-button {
+    display: block;
+    margin: auto;
+    color: black !important;
+}
+
+#keeper-prompt {
+    text-align: center;
+    margin-top: 13px;
+    margin-bottom: 0em;
+}
+  
+/* body {
+    background: rgba(0,0,0,0.9);
+} */
