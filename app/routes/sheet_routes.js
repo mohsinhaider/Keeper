@@ -5,9 +5,10 @@ const ObjectID = require('mongoose').Types.ObjectId;
 let Sheet = mongoose.model('Sheet');
 
 module.exports = function (app) {
+    // Update questions array
+
+    // Get a sheet from ID
     app.get('/sheet/view/:id', (req, res) => {
-        console.log('IN HERE');
-        console.log(req.params.id);
         Sheet.findById(new ObjectID(req.params.id), function (err, sheet) {
             if (err) {
                 res.send(err)
