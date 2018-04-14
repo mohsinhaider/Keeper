@@ -19,5 +19,11 @@
   "homepage": "https://github.com/mohsinhaider/Keeper#readme",
   "devDependencies": {
     "nodemon": "^1.17.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "express-fileupload": "^0.4.0",
+    "mongoose": "^5.0.14"
   }
 }
